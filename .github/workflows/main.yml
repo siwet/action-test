@@ -18,9 +18,9 @@ jobs:
   hello_world_job_image:
     runs-on: ubuntu-latest
     name: A job to say hello for pre build images
+    container: ghcr.io/siwet/hello-docker-action:main@sha256:ddd9103f51893959e3ad66916a611d9b7faf7c073d5896e8d0db55f90f450de2
     steps:
       - name: Hello world action step
-        container: ghcr.io/siwet/hello-docker-action:main@sha256:ddd9103f51893959e3ad66916a611d9b7faf7c073d5896e8d0db55f90f450de2
         id: hello
         run: cat /entrypoint.sh
 
