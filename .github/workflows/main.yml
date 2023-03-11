@@ -7,12 +7,22 @@ jobs:
     steps:
       - name: Hello world action step
         id: hello
+        # build docker image before run
         uses: siwet/hello-docker-action@v1
         with:
           who-to-greet: 'Mona the Octocat'
       # Use the output from the `hello` step
       - name: Get the output time
         run: echo "The time was ${{ steps.hello.outputs.time }}"
+
+  hello_world_job_image:
+    runs-on: ubuntu-latest
+    name: A job to say hello for pre build images
+    container: ghcr.io/siwet/hello-docker-action:main@sha256:ddd9103f51893959e3ad66916a611d9b7faf7c073d5896e8d0db55f90f450de2
+    steps:
+      - name: Hello world action step
+        id: hello
+        run: cat /entrypoint.sh
 
 
   hello_world_job_js:
