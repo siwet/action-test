@@ -1,0 +1,44 @@
+name: artifacts test
+
+on: push
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+    - name: Build app
+      run: |
+        # Build the app
+        echo "Building app" > app.jar
+    # Define artifacts to be passed to the test job
+    artifacts:
+      name: my-app
+      paths:
+        - app.jar
+
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Download artifacts
+      uses: actions/download-artifact@v2
+      with:
+        name: my-app
+    - name: Test app
+      run: |
+        # Run the tests
+        cat app.jar
+        
+  test2:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Download artifacts
+      uses: actions/download-artifact@v2
+      with:
+        name: my-app
+    - name: Test app
+      run: |
+        # Run the tests
+        echo test2
+        cat app.jar
