@@ -21,7 +21,7 @@ jobs:
     steps:
       - name: Hello world action step
         id: hello
-        uses: siwet/hello-javascript-action@v1
+        uses: siwet/hello-javascript-action@v2
         with:
           who-to-greet: 'Mona the Octocat'
       # Use the output from the `hello` step
